@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from quiz.base.models import Pergunta
 
 
 def home(requisicao):
@@ -8,7 +9,8 @@ def home(requisicao):
 
 
 def perguntas(requisicao, indice):
-    contexto = {'indice_da_questao':indice}
+    pergunta = Pergunta.objects.filter(disponivel=True).order_by('id')[indice - 1]
+    contexto = {'indice_da_questao': indice, 'pergunta': pergunta}
     return render(requisicao, 'base/game.html', context=contexto)
 
 
