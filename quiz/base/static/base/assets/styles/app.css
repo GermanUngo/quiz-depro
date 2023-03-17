@@ -20,6 +20,7 @@ body {
     background: -moz-linear-gradient(right, #1D2241, #30386b);
     background: -o-linear-gradient(right, #1D2241, #30386b);
     background: linear-gradient(to left, #1D2241, #30386b);
+    background-image: url("../img/code.gif");
     transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
     background-position: center center;
     background-repeat: no-repeat;
