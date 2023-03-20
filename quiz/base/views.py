@@ -1,10 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
-from quiz.base.models import Pergunta
+from quiz.base.forms import AlunoForm
+from quiz.base.models import Pergunta, Aluno
 
 
 def home(requisicao):
+    if requisicao.method == 'POST':
+        #Usuario já existe
+        email = requisicao.POST['email']
+        try:
+            aluno = Aluno.objects.get(email=email)
+        except Aluno.DoesNotExist:
+
+            #Usuário não existe
+            formulario = AlunoForm(requisicao.POST)
+            if formulario.is_valid():
+                aluno = formulario.save()
+                requisicao.session['aluno_id'] = aluno.id
+                return redirect('/perguntas/1')
+            else:
+                contexto = {'formulario': formulario}
+                return render(requisicao, 'base/home.html', contexto)
+        else:
+            requisicao.session['aluno_id'] = aluno.id
+            return redirect('/perguntas/1')
+
     return render(requisicao, 'base/home.html')
 
 

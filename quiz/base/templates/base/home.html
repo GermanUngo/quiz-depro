@@ -14,10 +14,14 @@
             <p class="subtitle-quiz">Quiz</p>
             <p class="subtitle-page">Dev Pro</p>
             <div class="form glow">
-                <form class="login-form" action="game.html">
-                  <input type="text" placeholder="NOME"/>
-                  <input type="password" placeholder="EMAIL"/>
-                  <button>Entrar</button>
+                {% if formulario.errors %}
+                    <p>Erros: {{ formulario.errors }} </p>
+                {% endif %}
+                <form class="login-form" method="post" action="/">
+                    {% csrf_token %}
+                  <input type="text" name="nome" placeholder="NOME" value="{{ formulario.nome.value }}"/>
+                  <input type="email" name="email" placeholder="EMAIL" value="{{ formulario.email.value }}" />
+                  <button type="submit">Entrar</button>
                 </form>
             </div>
         </div>
