@@ -9,7 +9,7 @@
 ## Sobre o projeto
 
 
-![Imagem sobre como contribuir](./quiz/base/static/base/assets/img/quiz.jpg)
+![Imagem do projeto](./quiz/base/static/base/assets/img/quiz.jpg)
 
 **O Quiz DevPro** é um quiz simples feito em Python e Django. As perguntas para o quiz não vêm no pacote, mas podem ser adicionadas pelo próprio administrador do framework no item "Questions".
 
